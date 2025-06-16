@@ -14,7 +14,7 @@ export const useAgentHandlerLink = ({
   ...config
 }: UseAgentHandlerLinkProps): UseAgentHandlerLinkResponse => {
   const [loading, error] = useScript({
-    src: 'https://cdn.merge.dev/ah-initialize.js',
+    src: 'https://ah-cdn.merge.dev/initialize.js',
     checkForExisting: true,
   });
   const [isReady, setIsReady] = useState(false);
