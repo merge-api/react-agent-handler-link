@@ -13,8 +13,22 @@ const isLinkTokenDefined = (
 export const useAgentHandlerLink = ({
   ...config
 }: UseAgentHandlerLinkProps): UseAgentHandlerLinkResponse => {
+  const initializeSrc = (() => {
+    const base = config?.tenantConfig?.apiBaseURL || '';
+    // Local dev
+    if (/localhost|127\.0\.0\.1/.test(base)) {
+      return 'http://localhost:3005/initialize.js';
+    }
+    // Develop
+    if (base.includes('-develop.') || base.includes('ah-api-develop.merge.dev')) {
+      return 'https://ah-cdn-develop.merge.dev/initialize.js';
+    }
+    // Default: Production
+    return 'https://ah-cdn.merge.dev/initialize.js';
+  })();
+
   const [loading, error] = useScript({
-    src: 'https://ah-cdn.merge.dev/initialize.js',
+    src: initializeSrc,
     checkForExisting: true,
   });
   const [isReady, setIsReady] = useState(false);

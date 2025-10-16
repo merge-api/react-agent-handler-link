@@ -29,6 +29,8 @@ export interface TenantConfig {
 export interface UseAgentHandlerLinkProps {
   linkToken?: string | undefined;
   tenantConfig?: TenantConfig;
+  /** Controls runtime telemetry plugin loading in the Link iframe (true = on, false = off). */
+  enable_telemetry?: boolean;
   onValidationError?: (errors: ValidationErrors) => void;
   onSuccess: (
     publicToken: string,
