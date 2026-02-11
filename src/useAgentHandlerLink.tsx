@@ -14,6 +14,7 @@ export const useAgentHandlerLink = ({
   ...config
 }: UseAgentHandlerLinkProps): UseAgentHandlerLinkResponse => {
   const initializeSrc = (() => {
+    if (config?.tenantConfig?.cdnBaseUrl) return `${config.tenantConfig.cdnBaseUrl}/initialize.js`;
     const base = config?.tenantConfig?.apiBaseURL || '';
     // Local dev
     if (/localhost|127\.0\.0\.1/.test(base)) {
