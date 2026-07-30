@@ -23,6 +23,9 @@ export const useAgentHandlerLink = ({
   ...config
 }: UseAgentHandlerLinkProps): UseAgentHandlerLinkResponse => {
   const initializeSrc = (() => {
+    // An explicit override wins over every derived value below.
+    if (config?.tenantConfig?.cdnBaseUrl)
+      return `${config.tenantConfig.cdnBaseUrl}/initialize.js`;
     const base = config?.tenantConfig?.apiBaseURL || '';
     const tenantCdn = API_BASE_URL_TO_CDN_URL[base];
     if (tenantCdn) {
