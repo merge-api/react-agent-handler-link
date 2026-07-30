@@ -25,6 +25,8 @@ export interface AgentHandlerLink {
 
 export interface TenantConfig {
   apiBaseURL?: string;
+  /** Optional: Force-specify CDN base URL. When omitted, CDN is derived from apiBaseURL. */
+  cdnBaseUrl?: string;
 }
 export interface UseAgentHandlerLinkProps {
   linkToken?: string | undefined;
