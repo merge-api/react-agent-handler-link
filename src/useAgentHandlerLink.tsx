@@ -17,6 +17,11 @@ const DEFAULT_CDN_URL = 'https://ah-cdn.merge.dev/initialize.js';
 const API_BASE_URL_TO_CDN_URL: Record<string, string> = {
   'https://ah-api-factory-usw2.factorymerge.com':
     'https://ah-cdn.factorymerge.com/initialize.js',
+  // Factory's API is moving to its own apex. This lookup is an exact string match with
+  // a silent fallback to the shared merge.dev CDN, so the new host needs its own entry
+  // or the widget quietly loads from the wrong CDN with no error.
+  'https://connectors-api.factory.ai':
+    'https://ah-cdn.factorymerge.com/initialize.js',
 };
 
 export const useAgentHandlerLink = ({
